@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulacro de Examen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulacro de Examen</h1>
+    <form id="quizForm">
+        <!-- Pregunta 1 -->
+        <div class="question" data-correct-answer="b">
+            <p>1. ¿Cuál es el tipo de músculo encargado del movimiento de los esqueletos axial y apendicular?</p>
+            <input type="radio" id="q1a" name="q1" value="a">
+            <label for="q1a">a. Tejido muscular cardiaco</label><br>
+            <input type="radio" id="q1b" name="q1" value="b">
+            <label for="q1b">b. Tejido muscular esquelético</label><br>
+            <input type="radio" id="q1c" name="q1" value="c">
+            <label for="q1c">c. Tejido muscular liso</label><br>
+            <input type="radio" id="q1d" name="q1" value="d">
+            <label for="q1d">d. Ninguno</label>
+            <p class="feedback"></p>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="question" data-correct-answer="a">
+            <p>2. ¿Qué elemento químico tiene el símbolo 'O'?</p>
+            <input type="radio" id="q2a" name="q2" value="a">
+            <label for="q2a">a. Oxígeno</label><br>
+            <input type="radio" id="q2b" name="q2" value="b">
+            <label for="q2b">b. Oro</label><br>
+            <input type="radio" id="q2c" name="q2" value="c">
+            <label for="q2c">c. Osmio</label><br>
+            <input type="radio" id="q2d" name="q2" value="d">
+            <label for="q2d">d. Oxalato</label>
+            <p class="feedback"></p>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="question" data-correct-answer="c">
+            <p>3. ¿Cuál es el planeta más cercano al sol?</p>
+            <input type="radio" id="q3a" name="q3" value="a">
+            <label for="q3a">a. Venus</label><br>
+            <input type="radio" id="q3b" name="q3" value="b">
+            <label for="q3b">b. Tierra</label><br>
+            <input type="radio" id="q3c" name="q3" value="c">
+            <label for="q3c">c. Mercurio</label><br>
+            <input type="radio" id="q3d" name="q3" value="d">
+            <label for="q3d">d. Marte</label>
+            <p class="feedback"></p>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="question" data-correct-answer="d">
+            <p>4. ¿Quién pintó la Mona Lisa?</p>
+            <input type="radio" id="q4a" name="q4" value="a">
+            <label for="q4a">a. Vincent van Gogh</label><br>
+            <input type="radio" id="q4b" name="q4" value="b">
+            <label for="q4b">b. Pablo Picasso</label><br>
+            <input type="radio" id="q4c" name="q4" value="c">
+            <label for="q4c">c. Claude Monet</label><br>
+            <input type="radio" id="q4d" name="q4" value="d">
+            <label for="q4d">d. Leonardo da Vinci</label>
+            <p class="feedback"></p>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="question" data-correct-answer="a">
+            <p>5. ¿Qué gas es esencial para la respiración humana?</p>
+            <input type="radio" id="q5a" name="q5" value="a">
+            <label for="q5a">a. Oxígeno</label><br>
+            <input type="radio" id="q5b" name="q5" value="b">
+            <label for="q5b">b. Nitrógeno</label><br>
+            <input type="radio" id="q5c" name="q5" value="c">
+            <label for="q5c">c. Dióxido de carbono</label><br>
+            <input type="radio" id="q5d" name="q5" value="d">
+            <label for="q5d">d. Hidrógeno</label>
+            <p class="feedback"></p>
+        </div>
+
+        <!-- Repite el bloque anterior hasta completar las 50 preguntas -->
+
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let score = 0;
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(question => {
+                const correctAnswer = question.getAttribute('data-correct-answer');
+                const selectedOption = question.querySelector('input[type="radio"]:checked');
+                const feedback = question.querySelector('.feedback');
+                if (selectedOption) {
+                    if (selectedOption.value === correctAnswer) {
+                        score++;
+                        feedback.textContent = 'Correcto';
+                        feedback.style.color = 'green';
+                    } else {
+                        feedback.textContent = 'Incorrecto';
+                        feedback.style.color = 'red';
+                    }
+                } else {
+                    feedback.textContent = 'No seleccionaste una respuesta';
+                    feedback.style.color = 'orange';
+                }
+            });
+            alert(`Has respondido correctamente ${score} de ${questions.length} preguntas.`);
+        });
+    </script>
+</body>
+</html>
